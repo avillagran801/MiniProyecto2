@@ -1,57 +1,8 @@
 #pragma once
 #include <string>
+#include <vector>
+#include "Node.h"
 using namespace std;
-// Códigos obtenidos a partir de https://www.geeksforgeeks.org/quad-tree/
-
-struct Point{
-    int x;
-    int y;
-    Point(int _x, int _y){
-        x = _x;
-        y = _y;
-    }
-    Point(){
-        x = 0;
-        y = 0;
-    }
-};
-
-struct Data {
-    Point pos;
-    string city;
-    int population; // Como mínimo. Se pueden guardar otros datos
-    Data(Point _pos, string _city, int _population){
-        pos = _pos;
-        city = _city;
-        population = _population;
-    }
-    Data(){
-        population = 0;
-    }
-};
-
-struct Node {
-    // Puntos para marcar el cuadrante
-    Point topLeft;
-    Point botRight;
-    // Estructura que contiene la información de la ciudad
-    Data* data;
-    // Punteros a sus hijos
-    QuadTree* topLeftNode;
-    QuadTree* topRightNode;
-    QuadTree* botLeftNode;
-    QuadTree* botRightNode;
-    Node(Data* _data, Point _topLeft, Point _botRight) {
-        data = _data;
-        topLeft = _topLeft;
-        botRight = _botRight;
-        
-        topLeftNode = NULL;
-        topRightNode = NULL;
-        botLeftNode = NULL;
-        botRightNode = NULL;
-    }
-};
 
 class QuadTree{
 private:
