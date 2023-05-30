@@ -1,8 +1,8 @@
 #include "QuadTree.h"
 using namespace std;
 
-QuadTree::QuadTree() {
-	root = new Node(Point(-180, 90), Point(180, -90)); // Definimos los márgenes del plano general
+QuadTree::QuadTree(double _min_width_size) {
+	root = new Node(Point(-180, 90), Point(180, -90), _min_width_size); // Definimos los márgenes del plano general
 	numNodes = 0;
 	numPoints = 0;
 }
@@ -12,12 +12,14 @@ int QuadTree::totalPoints() {
 }
 
 int QuadTree::totalNodes() {
-	return numNodes;
+	return root->getNumNodes();
 }
 
 void QuadTree::insert(Point p, string city, int population) {
-	// Relegamos la inserción a root
-	root->insert(p, city, population);
+	// Relegamos la inserción a root. Si es válida la inserción, numPoints aumenta en 1
+	if (root->insert(p, city, population)) {
+		numPoints++;
+	}
 }
 
 void QuadTree::list() {
