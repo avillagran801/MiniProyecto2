@@ -27,9 +27,9 @@ void QuadTree::list() {
 }
 
 int QuadTree::countRegion(Point p, int distance) {
-	return 1; // CAMBIAR, ES PARA QUE COMPILE
+	return root->countRegion(p, distance);
 }
 
 int QuadTree::aggregateRegion(Point p, int distance) {
-	return 1; // CAMBIAR, ES PARA QUE COMPILE
+	return root->aggregateRegion(p, distance);
 }

@@ -131,3 +131,68 @@ int Node::getNumNodes() {
     if (nodes == 0) return 1;
     else return nodes + 1;
 }
+
+int Node::countRegion(Point p, int distance) {
+    int count = 0;
+
+    // Si estamos en el último nivel, revisamos si los datos que almacena cumplen con estar dentro de la distancia establecida
+    if (isLeaf()) {
+        // Se considera la "distancia total" entre una ciudad y p como el número de rectángulos (distance) multiplicado por el tamaño mínimo definido
+        // para el ancho o alto (ancho/2)
+        if (!data.empty()&& abs(data[0].position.x - p.x) <= distance*MIN_WIDTH_SIZE && abs(data[0].position.y - p.y) <= distance*MIN_WIDTH_SIZE/2) {
+            count += data.size();
+        }
+    }
+    else {
+        if (topLeftNode != NULL) {
+            count += topLeftNode->countRegion(p, distance);
+        }
+        if (topRightNode != NULL) {
+            count += topRightNode->countRegion(p, distance);
+        }
+        if (botLeftNode != NULL) {
+            count += botLeftNode->countRegion(p, distance);
+        }
+        if (botRightNode != NULL) {
+            count += botLeftNode->countRegion(p, distance);
+        }
+    }
+
+    return count;
+}
+
+int Node::aggregateRegion(Point p, int distance) {
+    int count = 0;
+
+    // Si estamos en el último nivel, revisamos si los datos que almacena cumplen con estar dentro de la distancia establecida
+    if (isLeaf()) {
+        // Se considera la "distancia total" entre una ciudad y p como el número de rectángulos (distance) multiplicado por el tamaño mínimo definido
+        // para el ancho o alto (ancho/2)
+        if (!data.empty() && abs(data[0].position.x - p.x) <= distance * MIN_WIDTH_SIZE && abs(data[0].position.y - p.y) <= distance * MIN_WIDTH_SIZE / 2) {
+            // Sumamos las poblaciones guardadas en el vector
+            for (int i = 0; i < data.size(); i++) {
+                count += data[i].population;
+            }
+        }
+    }
+    else {
+        if (topLeftNode != NULL) {
+            count += topLeftNode->aggregateRegion(p, distance);
+        }
+        if (topRightNode != NULL) {
+            count += topRightNode->aggregateRegion(p, distance);
+        }
+        if (botLeftNode != NULL) {
+            count += botLeftNode->aggregateRegion(p, distance);
+        }
+        if (botRightNode != NULL) {
+            count += botLeftNode->aggregateRegion(p, distance);
+        }
+    }
+
+    return count;
+}
+
+bool Node::isLeaf() {
+    return (topLeftNode == NULL && topRightNode == NULL && botLeftNode == NULL && botRightNode == NULL);
+}

@@ -53,5 +53,8 @@ public:
     bool insert(Point _p, string _city, int _population);
     bool inBoundary(Point evaluate);
     int getNumNodes();
+    int countRegion(Point p, int distance);
+    int aggregateRegion(Point p, int distance);
+    bool isLeaf();
 };
 

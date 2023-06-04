@@ -1,4 +1,5 @@
 ﻿  Node.cpp
 C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto2\MiniProyecto2\Node.cpp(12,22): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto2\MiniProyecto2\Node.cpp(143,31): warning C4267: '+=': conversión de 'size_t' a 'int'; posible pérdida de datos
 C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto2\MiniProyecto2\Node.cpp(110): warning C4715: 'Node::insert': no todas las rutas de acceso de control devuelven un valor
   MiniProyecto2.vcxproj -> C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto2\MiniProyecto2\x64\Debug\MiniProyecto2.exe
