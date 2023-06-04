@@ -57,5 +57,6 @@ public:
     int aggregateRegion(Point p, int distance);
     bool isLeaf();
     void print(Node* node, string indent, int branch);
+    vector<Data> list();
 };
 

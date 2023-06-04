@@ -220,3 +220,37 @@ void Node::print(Node* node, string indent, int branch){
         print(node->botRightNode, indent, 3);
     }
 }
+
+vector<Data> Node::list() {
+    vector<Data> cities;
+    if (isLeaf()) {
+        if (!data.empty()) {
+            cities.insert(cities.end(), data.begin(), data.end());
+        }
+    }
+    else{
+        vector<Data> aux;
+        if (topLeftNode != NULL) {
+            aux = topLeftNode->list();
+            cities.insert(cities.end(), aux.begin(), aux.end());
+            aux.clear();
+        }
+        if (topRightNode != NULL) {
+            aux = topRightNode->list();
+            cities.insert(cities.end(), aux.begin(), aux.end());
+            aux.clear();
+        }
+        if (botLeftNode != NULL) {
+            aux = botLeftNode->list();
+            cities.insert(cities.end(), aux.begin(), aux.end());
+            aux.clear();
+        }
+        if (botRightNode != NULL) {
+            aux = botRightNode->list();
+            cities.insert(cities.end(), aux.begin(), aux.end());
+            aux.clear();
+        }
+    }
+
+    return cities;
+}

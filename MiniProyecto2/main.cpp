@@ -16,6 +16,14 @@ int main() {
 	cout << "Total population at a certain distance from (0,0): " << qt->aggregateRegion(Point(0, 0), 1000) << endl;
 
 	qt->printQuadTree();
+	
+	cout << "Cities Summary" << endl;
+	vector<Data> Cities = qt->list();
+
+	for (int i = 0; i < Cities.size(); ++i){
+		cout << "///City: " << Cities[i].city << " ///Population: " << Cities[i].population << " ///Coordinates: " << Cities[i].position.x << " , " << Cities[i].position.y << endl;
+	}
+
 
 	return 0;
 }

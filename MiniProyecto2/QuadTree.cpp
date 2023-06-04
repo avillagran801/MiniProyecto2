@@ -23,8 +23,8 @@ void QuadTree::insert(Point p, string city, int population) {
 	}
 }
 
-void QuadTree::list() {
-
+vector<Data> QuadTree::list() {
+	return root->list();
 }
 
 int QuadTree::countRegion(Point p, int distance) {
