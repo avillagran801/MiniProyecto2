@@ -1,4 +1,5 @@
 #include "QuadTree.h"
+#include <iostream>
 using namespace std;
 
 QuadTree::QuadTree(double _min_width_size) {
@@ -32,4 +33,9 @@ int QuadTree::countRegion(Point p, int distance) {
 
 int QuadTree::aggregateRegion(Point p, int distance) {
 	return root->aggregateRegion(p, distance);
+}
+
+void QuadTree::printQuadTree() {
+	cout << endl << "*** PRINT QUADTREE ***" << endl << endl;
+	root->print(root, "", 0);
 }

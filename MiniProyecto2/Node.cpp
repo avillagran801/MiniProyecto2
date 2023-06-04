@@ -15,28 +15,21 @@ Node::Node(Point _topLeft, Point _botRight, double _min_width_size) {
 bool Node::insert(Point _p, string _city, int _population) {
     // Si el punto no está dentro de los límites del nodo, return
     if (inBoundary(_p) == false) {
-        //cout << "IN BOUNDARY FALSE" << endl << endl;
         return false;
     }
 
     // Si alcanzamos el tamaño mínimo de área, agregamos el valor a data
     if (botRight.x - topLeft.x <= MIN_WIDTH_SIZE){
-        //cout << "LLEGAMOS AL ULTIMO NIVEL!" << endl << endl;
         data.push_back(Data(_p, _city, _population));
         return true;
     }
 
     // Si aún es posible dividir los cuadrados, inicia la recursión hasta alcanzar el tamaño mínimo de área
 
-    //cout << "*** CURRENT BOUNDS ***" << endl;
-    //cout << "TopLeft: " << topLeft.x << ", " << topLeft.y << endl;
-    //cout << "BotRight: " << botRight.x << ", " << botRight.y << endl;
-
     // Izquierda del plano
     if ((botRight.x - topLeft.x)/2 + topLeft.x >= _p.x) {
         // Bottom left
         if ((topLeft.y - botRight.y)/2 + botRight.y >= _p.y){
-            //cout << "BOTTOM LEFT" << endl << endl;
             // Si no existe, lo creamos
             if (botLeftNode == NULL) {
                 botLeftNode = new Node(Point(topLeft.x, topLeft.y - (topLeft.y - botRight.y) / 2), Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y - (topLeft.y - botRight.y)), MIN_WIDTH_SIZE);
@@ -54,7 +47,6 @@ bool Node::insert(Point _p, string _city, int _population) {
         }
         // Top left
         else {
-            //cout << "TOP LEFT" << endl << endl;
             if (botLeftNode == NULL) {
                 botLeftNode = new Node(Point(topLeft.x, topLeft.y - (topLeft.y - botRight.y) / 2), Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y - (topLeft.y - botRight.y)), MIN_WIDTH_SIZE);
             }
@@ -74,7 +66,6 @@ bool Node::insert(Point _p, string _city, int _population) {
     else {
         // Bottom right
         if ((topLeft.y - botRight.y) / 2 + botRight.y >= _p.y) {
-            //cout << "BOTTOM RIGHT" << endl << endl;
             if (botLeftNode == NULL) {
                 botLeftNode = new Node(Point(topLeft.x, topLeft.y - (topLeft.y - botRight.y) / 2), Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y - (topLeft.y - botRight.y)), MIN_WIDTH_SIZE);
             }
@@ -91,7 +82,6 @@ bool Node::insert(Point _p, string _city, int _population) {
         }
         // Top right
         else {
-            //cout << "TOP RIGHT" << endl << endl;
             if (botLeftNode == NULL) {
                 botLeftNode = new Node(Point(topLeft.x, topLeft.y - (topLeft.y - botRight.y) / 2), Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y - (topLeft.y - botRight.y)), MIN_WIDTH_SIZE);
             }
@@ -154,7 +144,7 @@ int Node::countRegion(Point p, int distance) {
             count += botLeftNode->countRegion(p, distance);
         }
         if (botRightNode != NULL) {
-            count += botLeftNode->countRegion(p, distance);
+            count += botRightNode->countRegion(p, distance);
         }
     }
 
@@ -186,7 +176,7 @@ int Node::aggregateRegion(Point p, int distance) {
             count += botLeftNode->aggregateRegion(p, distance);
         }
         if (botRightNode != NULL) {
-            count += botLeftNode->aggregateRegion(p, distance);
+            count += botRightNode->aggregateRegion(p, distance);
         }
     }
 
@@ -195,4 +185,38 @@ int Node::aggregateRegion(Point p, int distance) {
 
 bool Node::isLeaf() {
     return (topLeftNode == NULL && topRightNode == NULL && botLeftNode == NULL && botRightNode == NULL);
+}
+
+void Node::print(Node* node, string indent, int branch){
+    if (node != NULL) {
+        cout << indent;
+        if (branch == 0) {
+            cout << "TL----";
+            indent += "|  ";
+        }
+        else if (branch == 1) {
+            cout << "TR----";
+            indent += "|  ";
+        }
+        else if (branch == 2) {
+            cout << "BL----";
+            indent += "|  ";
+        }
+        else if (branch == 3) {
+            cout << "BR----";
+            indent += "|  ";
+        }
+
+        if (node->data.empty()) {
+            cout << "X" << endl;
+        }
+        else {
+            cout << node->data[0].city << " + " << node->data.size() - 1 << " other cities" << endl;
+        }
+
+        print(node->topLeftNode, indent, 0);
+        print(node->topRightNode, indent, 1);
+        print(node->botLeftNode, indent, 2);
+        print(node->botRightNode, indent, 3);
+    }
 }

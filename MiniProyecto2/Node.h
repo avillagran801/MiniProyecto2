@@ -56,5 +56,6 @@ public:
     int countRegion(Point p, int distance);
     int aggregateRegion(Point p, int distance);
     bool isLeaf();
+    void print(Node* node, string indent, int branch);
 };
 
