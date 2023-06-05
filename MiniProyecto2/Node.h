@@ -23,7 +23,7 @@ struct Point { // Se trabaja con ángulos
 struct Data {
     Point position;
     string city;
-    int population; // Como mínimo. Se pueden guardar otros datos
+    double population; // Como mínimo. Se pueden guardar otros datos
     Data(Point _position, string _city, int _population) {
         position = _position;
         city = _city;

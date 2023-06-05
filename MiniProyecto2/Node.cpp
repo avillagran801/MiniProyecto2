@@ -129,7 +129,7 @@ int Node::countRegion(Point p, int distance) {
     if (isLeaf()) {
         // Se considera la "distancia total" entre una ciudad y p como el número de rectángulos (distance) multiplicado por el tamaño mínimo definido
         // para el ancho o alto (ancho/2)
-        if (!data.empty()&& abs(data[0].position.x - p.x) <= distance*MIN_WIDTH_SIZE && abs(data[0].position.y - p.y) <= distance*MIN_WIDTH_SIZE/2) {
+        if (!data.empty()&& abs(data[0].position.x - p.x) <= (double)distance*MIN_WIDTH_SIZE && abs(data[0].position.y - p.y) <= (double)distance*MIN_WIDTH_SIZE/2) {
             count += data.size();
         }
     }
