@@ -28,9 +28,9 @@ vector<Data> readDataBase(int numLines) {
 		Data dataAux; // Creamos un data para agregar al vector
 
 		while (getline(aux, field, ';')) { // Lee el string usando ";" como delimitador
-			int commaPos = field.find(',');
+			int commaPos = field.find(','); // La base de datos trae los decimales con comas, así que las convertimos en puntos
 			if (commaPos != string::npos) {
-				field.erase(commaPos);
+				field[commaPos] = '.';
 			}
 
 			switch (currentField) {
