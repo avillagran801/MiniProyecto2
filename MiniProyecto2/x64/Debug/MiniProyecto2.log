@@ -1,3 +1,4 @@
 ﻿  main.cpp
-C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto2\MiniProyecto2\main.cpp(32,17): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto2\MiniProyecto2\main.cpp(31,17): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto2\MiniProyecto2\main.cpp(78,64): warning C4244: 'argumento': conversión de 'double' a 'int'; posible pérdida de datos
   MiniProyecto2.vcxproj -> C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto2\MiniProyecto2\x64\Debug\MiniProyecto2.exe

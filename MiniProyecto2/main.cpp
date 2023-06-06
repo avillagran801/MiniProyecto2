@@ -60,13 +60,25 @@ vector<Data> readDataBase(int numLines) {
 }
 
 int main() {
-	vector<Data> dataBase = readDataBase(10);
+	cout << "How many cities do you want to insert into the QuadTree?" << endl;
+	int numData;
+	cin >> numData;
 
-	for (int i = 0; i < dataBase.size(); i++) {
-		cout << "Ciudad: " << dataBase[i].city << endl;
-		cout << "Poblacion: " << dataBase[i].population << endl;
-		cout << "Ubicacion: (" << dataBase[i].position.x << "," << dataBase[i].position.y << ")" << endl << endl;
+	// Leemos numData líneas de la base de datos (sin contar títulos) y las guardamos en el vector de Data
+	vector<Data> dataBase = readDataBase(numData);
+
+	cout << "What is the width of the smallest square? (from 0.0001 to 360)" << endl;
+	int width;
+	cin >> width;
+
+	// El área más pequeña será de width x (width/2)
+	QuadTree qt(width);
+
+	for (int i = 0; i < numData; i++) {
+		qt.insert(dataBase[i].position, dataBase[i].city, dataBase[i].population);
 	}
 
+	qt.printQuadTree();
+	
 	return 0;
 }
