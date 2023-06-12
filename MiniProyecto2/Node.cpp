@@ -19,7 +19,7 @@ bool Node::insert(Point _p, string _city, int _population) {
     }
 
     // Si alcanzamos el tamaño mínimo de área, agregamos el valor a data
-    if (botRight.x - topLeft.x <= MIN_WIDTH_SIZE){
+    if (botRight.longitude - topLeft.longitude <= MIN_WIDTH_SIZE){
         data.push_back(Data(_p, _city, _population));
         return true;
     }
@@ -27,37 +27,37 @@ bool Node::insert(Point _p, string _city, int _population) {
     // Si aún es posible dividir los cuadrados, inicia la recursión hasta alcanzar el tamaño mínimo de área
 
     // Izquierda del plano
-    if ((botRight.x - topLeft.x)/2 + topLeft.x >= _p.x) {
+    if ((botRight.longitude - topLeft.longitude)/2 + topLeft.longitude >= _p.longitude) {
         // Bottom left
-        if ((topLeft.y - botRight.y)/2 + botRight.y >= _p.y){
+        if ((topLeft.latitude - botRight.latitude)/2 + botRight.latitude >= _p.latitude){
             // Si no existe, lo creamos
             if (botLeftNode == NULL) {
-                botLeftNode = new Node(Point(topLeft.x, topLeft.y - (topLeft.y - botRight.y) / 2), Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y - (topLeft.y - botRight.y)), MIN_WIDTH_SIZE);
+                botLeftNode = new Node(Point(topLeft.longitude, topLeft.latitude - (topLeft.latitude - botRight.latitude) / 2), Point(topLeft.longitude + (botRight.longitude - topLeft.longitude) / 2, topLeft.latitude - (topLeft.latitude - botRight.latitude)), MIN_WIDTH_SIZE);
             }
             if (topLeftNode == NULL) {
-                topLeftNode = new Node(Point(topLeft.x, topLeft.y), Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y - (topLeft.y - botRight.y) / 2), MIN_WIDTH_SIZE);
+                topLeftNode = new Node(Point(topLeft.longitude, topLeft.latitude), Point(topLeft.longitude + (botRight.longitude - topLeft.longitude) / 2, topLeft.latitude - (topLeft.latitude - botRight.latitude) / 2), MIN_WIDTH_SIZE);
             }
             if (botRightNode == NULL) {
-                botRightNode = new Node(Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y - (topLeft.y - botRight.y) / 2), Point(botRight.x, botRight.y), MIN_WIDTH_SIZE);
+                botRightNode = new Node(Point(topLeft.longitude + (botRight.longitude - topLeft.longitude) / 2, topLeft.latitude - (topLeft.latitude - botRight.latitude) / 2), Point(botRight.longitude, botRight.latitude), MIN_WIDTH_SIZE);
             }
             if (topRightNode == NULL) {
-                topRightNode = new Node(Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y), Point(topLeft.x + (botRight.x - topLeft.x), topLeft.y - (topLeft.y - botRight.y) / 2), MIN_WIDTH_SIZE);
+                topRightNode = new Node(Point(topLeft.longitude + (botRight.longitude - topLeft.longitude) / 2, topLeft.latitude), Point(topLeft.longitude + (botRight.longitude - topLeft.longitude), topLeft.latitude - (topLeft.latitude - botRight.latitude) / 2), MIN_WIDTH_SIZE);
             }
             botLeftNode->insert(_p, _city, _population);
         }
         // Top left
         else {
             if (botLeftNode == NULL) {
-                botLeftNode = new Node(Point(topLeft.x, topLeft.y - (topLeft.y - botRight.y) / 2), Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y - (topLeft.y - botRight.y)), MIN_WIDTH_SIZE);
+                botLeftNode = new Node(Point(topLeft.longitude, topLeft.latitude - (topLeft.latitude - botRight.latitude) / 2), Point(topLeft.longitude + (botRight.longitude - topLeft.longitude) / 2, topLeft.latitude - (topLeft.latitude - botRight.latitude)), MIN_WIDTH_SIZE);
             }
             if (topLeftNode == NULL) {
-                topLeftNode = new Node(Point(topLeft.x, topLeft.y), Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y - (topLeft.y - botRight.y) / 2), MIN_WIDTH_SIZE);
+                topLeftNode = new Node(Point(topLeft.longitude, topLeft.latitude), Point(topLeft.longitude + (botRight.longitude - topLeft.longitude) / 2, topLeft.latitude - (topLeft.latitude - botRight.latitude) / 2), MIN_WIDTH_SIZE);
             }
             if (botRightNode == NULL) {
-                botRightNode = new Node(Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y - (topLeft.y - botRight.y) / 2), Point(botRight.x, botRight.y), MIN_WIDTH_SIZE);
+                botRightNode = new Node(Point(topLeft.longitude + (botRight.longitude - topLeft.longitude) / 2, topLeft.latitude - (topLeft.latitude - botRight.latitude) / 2), Point(botRight.longitude, botRight.latitude), MIN_WIDTH_SIZE);
             }
             if (topRightNode == NULL) {
-                topRightNode = new Node(Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y), Point(topLeft.x + (botRight.x - topLeft.x), topLeft.y - (topLeft.y - botRight.y) / 2), MIN_WIDTH_SIZE);
+                topRightNode = new Node(Point(topLeft.longitude + (botRight.longitude - topLeft.longitude) / 2, topLeft.latitude), Point(topLeft.longitude + (botRight.longitude - topLeft.longitude), topLeft.latitude - (topLeft.latitude - botRight.latitude) / 2), MIN_WIDTH_SIZE);
             }
             topLeftNode->insert(_p, _city, _population);
         }
@@ -65,34 +65,34 @@ bool Node::insert(Point _p, string _city, int _population) {
     // Derecha del plano
     else {
         // Bottom right
-        if ((topLeft.y - botRight.y) / 2 + botRight.y >= _p.y) {
+        if ((topLeft.latitude - botRight.latitude) / 2 + botRight.latitude >= _p.latitude) {
             if (botLeftNode == NULL) {
-                botLeftNode = new Node(Point(topLeft.x, topLeft.y - (topLeft.y - botRight.y) / 2), Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y - (topLeft.y - botRight.y)), MIN_WIDTH_SIZE);
+                botLeftNode = new Node(Point(topLeft.longitude, topLeft.latitude - (topLeft.latitude - botRight.latitude) / 2), Point(topLeft.longitude + (botRight.longitude - topLeft.longitude) / 2, topLeft.latitude - (topLeft.latitude - botRight.latitude)), MIN_WIDTH_SIZE);
             }
             if (topLeftNode == NULL) {
-                topLeftNode = new Node(Point(topLeft.x, topLeft.y), Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y - (topLeft.y - botRight.y) / 2), MIN_WIDTH_SIZE);
+                topLeftNode = new Node(Point(topLeft.longitude, topLeft.latitude), Point(topLeft.longitude + (botRight.longitude - topLeft.longitude) / 2, topLeft.latitude - (topLeft.latitude - botRight.latitude) / 2), MIN_WIDTH_SIZE);
             }
             if (botRightNode == NULL) {
-                botRightNode = new Node(Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y - (topLeft.y - botRight.y) / 2), Point(botRight.x, botRight.y), MIN_WIDTH_SIZE);
+                botRightNode = new Node(Point(topLeft.longitude + (botRight.longitude - topLeft.longitude) / 2, topLeft.latitude - (topLeft.latitude - botRight.latitude) / 2), Point(botRight.longitude, botRight.latitude), MIN_WIDTH_SIZE);
             }
             if (topRightNode == NULL) {
-                topRightNode = new Node(Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y), Point(topLeft.x + (botRight.x - topLeft.x), topLeft.y - (topLeft.y - botRight.y) / 2), MIN_WIDTH_SIZE);
+                topRightNode = new Node(Point(topLeft.longitude + (botRight.longitude - topLeft.longitude) / 2, topLeft.latitude), Point(topLeft.longitude + (botRight.longitude - topLeft.longitude), topLeft.latitude - (topLeft.latitude - botRight.latitude) / 2), MIN_WIDTH_SIZE);
             }
             botRightNode->insert(_p, _city, _population);
         }
         // Top right
         else {
             if (botLeftNode == NULL) {
-                botLeftNode = new Node(Point(topLeft.x, topLeft.y - (topLeft.y - botRight.y) / 2), Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y - (topLeft.y - botRight.y)), MIN_WIDTH_SIZE);
+                botLeftNode = new Node(Point(topLeft.longitude, topLeft.latitude - (topLeft.latitude - botRight.latitude) / 2), Point(topLeft.longitude + (botRight.longitude - topLeft.longitude) / 2, topLeft.latitude - (topLeft.latitude - botRight.latitude)), MIN_WIDTH_SIZE);
             }
             if (topLeftNode == NULL) {
-                topLeftNode = new Node(Point(topLeft.x, topLeft.y), Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y - (topLeft.y - botRight.y) / 2), MIN_WIDTH_SIZE);
+                topLeftNode = new Node(Point(topLeft.longitude, topLeft.latitude), Point(topLeft.longitude + (botRight.longitude - topLeft.longitude) / 2, topLeft.latitude - (topLeft.latitude - botRight.latitude) / 2), MIN_WIDTH_SIZE);
             }
             if (botRightNode == NULL) {
-                botRightNode = new Node(Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y - (topLeft.y - botRight.y) / 2), Point(botRight.x, botRight.y), MIN_WIDTH_SIZE);
+                botRightNode = new Node(Point(topLeft.longitude + (botRight.longitude - topLeft.longitude) / 2, topLeft.latitude - (topLeft.latitude - botRight.latitude) / 2), Point(botRight.longitude, botRight.latitude), MIN_WIDTH_SIZE);
             }
             if (topRightNode == NULL) {
-                topRightNode = new Node(Point(topLeft.x + (botRight.x - topLeft.x) / 2, topLeft.y), Point(topLeft.x + (botRight.x - topLeft.x), topLeft.y - (topLeft.y - botRight.y) / 2), MIN_WIDTH_SIZE);
+                topRightNode = new Node(Point(topLeft.longitude + (botRight.longitude - topLeft.longitude) / 2, topLeft.latitude), Point(topLeft.longitude + (botRight.longitude - topLeft.longitude), topLeft.latitude - (topLeft.latitude - botRight.latitude) / 2), MIN_WIDTH_SIZE);
             }
             topRightNode->insert(_p, _city, _population);
         }
@@ -100,7 +100,7 @@ bool Node::insert(Point _p, string _city, int _population) {
 }
 
 bool Node::inBoundary(Point evaluate) { // Esto en base a nuestro plano de referencia, donde el 0 es el punto de al medio
-    return (evaluate.x >= topLeft.x && evaluate.x <= botRight.x && evaluate.y <= topLeft.y && evaluate.y >= botRight.y);
+    return (evaluate.longitude >= topLeft.longitude && evaluate.longitude <= botRight.longitude && evaluate.latitude <= topLeft.latitude && evaluate.latitude >= botRight.latitude);
 }
 
 int Node::getNumNodes() {
@@ -127,9 +127,9 @@ int Node::countRegion(Point p, int distance) {
 
     // Si estamos en el último nivel, revisamos si los datos que almacena cumplen con estar dentro de la distancia establecida
     if (isLeaf()) {
-        // Se considera la "distancia total" entre una ciudad y p como el número de rectángulos (distance) multiplicado por el tamaño mínimo definido
+        // Se considera la "distancia total" entre una ciudad latitude p como el número de rectángulos (distance) multiplicado por el tamaño mínimo definido
         // para el ancho o alto (ancho/2)
-        if (!data.empty()&& abs(data[0].position.x - p.x) <= (double)distance*MIN_WIDTH_SIZE && abs(data[0].position.y - p.y) <= (double)distance*MIN_WIDTH_SIZE/2) {
+        if (!data.empty()&& abs(data[0].position.longitude - p.longitude) <= (double)distance*MIN_WIDTH_SIZE && abs(data[0].position.latitude - p.latitude) <= (double)distance*MIN_WIDTH_SIZE/2) {
             count += data.size();
         }
     }
@@ -156,9 +156,9 @@ int Node::aggregateRegion(Point p, int distance) {
 
     // Si estamos en el último nivel, revisamos si los datos que almacena cumplen con estar dentro de la distancia establecida
     if (isLeaf()) {
-        // Se considera la "distancia total" entre una ciudad y p como el número de rectángulos (distance) multiplicado por el tamaño mínimo definido
+        // Se considera la "distancia total" entre una ciudad latitude p como el número de rectángulos (distance) multiplicado por el tamaño mínimo definido
         // para el ancho o alto (ancho/2)
-        if (!data.empty() && abs(data[0].position.x - p.x) <= distance * MIN_WIDTH_SIZE && abs(data[0].position.y - p.y) <= distance * MIN_WIDTH_SIZE / 2) {
+        if (!data.empty() && abs(data[0].position.longitude - p.longitude) <= distance * MIN_WIDTH_SIZE && abs(data[0].position.latitude - p.latitude) <= distance * MIN_WIDTH_SIZE / 2) {
             // Sumamos las poblaciones guardadas en el vector
             for (int i = 0; i < data.size(); i++) {
                 count += data[i].population;

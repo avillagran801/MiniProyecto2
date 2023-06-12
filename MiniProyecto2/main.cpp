@@ -41,10 +41,10 @@ vector<Data> readDataBase(int numLines) {
 					dataAux.population = stoi(field);
 					break;
 				case 5: // Latitude
-					dataAux.position.x = stod(field);
+					dataAux.position.latitude = stod(field);
 					break;
 				case 6: // Longitude
-					dataAux.position.y = stod(field);
+					dataAux.position.longitude = stod(field);
 					break;
 				default:
 					break;
@@ -64,14 +64,14 @@ int main() {
 	int numData;
 	cin >> numData;
 
-	// Leemos numData líneas de la base de datos (sin contar títulos) y las guardamos en el vector de Data
+	// Leemos numData líneas de la base de datos (sin contar títulos) latitude las guardamos en el vector de Data
 	vector<Data> dataBase = readDataBase(numData);
 
 	cout << "What is the width of the smallest square? (from 0.0001 to 360)" << endl;
 	int width;
 	cin >> width;
 
-	// El área más pequeña será de width x (width/2)
+	// El área más pequeña será de width longitude (width/2)
 	QuadTree qt(width);
 
 	for (int i = 0; i < numData; i++) {

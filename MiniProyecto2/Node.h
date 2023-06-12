@@ -8,15 +8,15 @@ using namespace std;
 // ES NECESARIO ESTABLECER UNA MEDIDA MÍNIMA PARA DEJAR DE DIVIDIR LOS CUADRADOS
 
 struct Point { // Se trabaja con ángulos
-    double x;
-    double y;
+    double longitude;
+    double latitude;
     Point(double _x, double _y) {
-        x = _x;
-        y = _y;
+        longitude = _x;
+        latitude = _y;
     }
     Point() {
-        x = 0;
-        y = 0;
+        longitude = 0;
+        latitude = 0;
     }
 };
 
