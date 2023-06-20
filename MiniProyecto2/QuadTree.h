@@ -9,9 +9,10 @@ private:
     int numPoints; // Usados
     int numNodes; // Toooooodos
     Node* root;
+	double MIN_WIDTH_SIZE;
 
 public:
-    QuadTree(double _min_square_size);
+    QuadTree(double _min_width_size);
 	int totalPoints(); // Retorna la cantidad de puntos almacenados en el QuadTree
 	int totalNodes(); // Retorna la cantidad de nodos, tanto blancos como negros, en el QuadTree
 	void insert(Point p, string city, int population); // Inserta un nuevo punto p en el QuadTree, asociando a dicho punto la información disponible en data(ej.la población de una ciudad con coordenadas p).

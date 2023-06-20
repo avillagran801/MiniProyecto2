@@ -36,7 +36,7 @@ struct Data {
 
 class Node{
 private:
-    int MIN_WIDTH_SIZE;
+    double MIN_WIDTH_SIZE;
     // Puntos para marcar el cuadrante
     Point topLeft;
     Point botRight;
@@ -53,8 +53,8 @@ public:
     bool insert(Point _p, string _city, int _population);
     bool inBoundary(Point evaluate);
     int getNumNodes();
-    int countRegion(Point p, int distance);
-    int aggregateRegion(Point p, int distance);
+    int countRegion(Point _topLeftP, Point _botRightP, int distance);
+    int aggregateRegion(Point _topLeftP, Point _botRightP, int distance);
     bool isLeaf();
     void print(Node* node, string indent, int branch);
     vector<Data> list();

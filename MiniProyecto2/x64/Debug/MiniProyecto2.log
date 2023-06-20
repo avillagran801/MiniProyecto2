@@ -1,6 +1,4 @@
-﻿  Node.cpp
-C:\Users\aceb3\Documents\GitHub\MiniProyecto2\MiniProyecto2\Node.cpp(12,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\aceb3\Documents\GitHub\MiniProyecto2\MiniProyecto2\Node.cpp(133,31): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\aceb3\Documents\GitHub\MiniProyecto2\MiniProyecto2\Node.cpp(164,33): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
-C:\Users\aceb3\Documents\GitHub\MiniProyecto2\MiniProyecto2\Node.cpp(100): warning C4715: 'Node::insert': not all control paths return a value
-  MiniProyecto2.vcxproj -> C:\Users\aceb3\Documents\GitHub\MiniProyecto2\MiniProyecto2\x64\Debug\MiniProyecto2.exe
+﻿  main.cpp
+C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto2\MiniProyecto2\main.cpp(31,17): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto2\MiniProyecto2\main.cpp(71,64): warning C4244: 'argumento': conversión de 'double' a 'int'; posible pérdida de datos
+  MiniProyecto2.vcxproj -> C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto2\MiniProyecto2\x64\Debug\MiniProyecto2.exe

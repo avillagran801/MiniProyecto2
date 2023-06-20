@@ -122,43 +122,44 @@ int Node::getNumNodes() {
     else return nodes + 1;
 }
 
-int Node::countRegion(Point p, int distance) {
+int Node::countRegion(Point _topLeftP, Point _botRightP, int distance) {
     int count = 0;
 
     // Si estamos en el último nivel, revisamos si los datos que almacena cumplen con estar dentro de la distancia establecida
     if (isLeaf()) {
-        // Se considera la "distancia total" entre una ciudad latitude p como el número de rectángulos (distance) multiplicado por el tamaño mínimo definido
-        // para el ancho o alto (ancho/2)
-        if (!data.empty()&& abs(data[0].position.longitude - p.longitude) <= (double)distance*MIN_WIDTH_SIZE && abs(data[0].position.latitude - p.latitude) <= (double)distance*MIN_WIDTH_SIZE/2) {
+
+        // Evaluamos si el cuadrante actual está contenido por el cuadrante que buscamos
+        if (_botRightP.longitude >= topLeft.longitude && botRight.longitude >= _topLeftP.longitude && _topLeftP.latitude >= botRight.latitude && topLeft.latitude >= _botRightP.latitude) {
+            // Sumamos los puntos en su interior
             count += data.size();
         }
     }
     else {
         if (topLeftNode != NULL) {
-            count += topLeftNode->countRegion(p, distance);
+            count += topLeftNode->countRegion(_topLeftP, _botRightP, distance);
         }
         if (topRightNode != NULL) {
-            count += topRightNode->countRegion(p, distance);
+            count += topRightNode->countRegion(_topLeftP, _botRightP, distance);
         }
         if (botLeftNode != NULL) {
-            count += botLeftNode->countRegion(p, distance);
+            count += botLeftNode->countRegion(_topLeftP, _botRightP, distance);
         }
         if (botRightNode != NULL) {
-            count += botRightNode->countRegion(p, distance);
+            count += botRightNode->countRegion(_topLeftP, _botRightP, distance);
         }
     }
 
     return count;
 }
 
-int Node::aggregateRegion(Point p, int distance) {
+int Node::aggregateRegion(Point _topLeftP, Point _botRightP, int distance) {
     int count = 0;
 
     // Si estamos en el último nivel, revisamos si los datos que almacena cumplen con estar dentro de la distancia establecida
     if (isLeaf()) {
-        // Se considera la "distancia total" entre una ciudad latitude p como el número de rectángulos (distance) multiplicado por el tamaño mínimo definido
-        // para el ancho o alto (ancho/2)
-        if (!data.empty() && abs(data[0].position.longitude - p.longitude) <= distance * MIN_WIDTH_SIZE && abs(data[0].position.latitude - p.latitude) <= distance * MIN_WIDTH_SIZE / 2) {
+
+        // Evaluamos si el cuadrante actual está contenido por el cuadrante que buscamos
+        if (_botRightP.longitude >= topLeft.longitude && botRight.longitude >= _topLeftP.longitude && _topLeftP.latitude >= botRight.latitude && topLeft.latitude >= _botRightP.latitude) {
             // Sumamos las poblaciones guardadas en el vector
             for (int i = 0; i < data.size(); i++) {
                 count += data[i].population;
@@ -167,16 +168,16 @@ int Node::aggregateRegion(Point p, int distance) {
     }
     else {
         if (topLeftNode != NULL) {
-            count += topLeftNode->aggregateRegion(p, distance);
+            count += topLeftNode->aggregateRegion(_topLeftP, _botRightP, distance);
         }
         if (topRightNode != NULL) {
-            count += topRightNode->aggregateRegion(p, distance);
+            count += topRightNode->aggregateRegion(_topLeftP, _botRightP, distance);
         }
         if (botLeftNode != NULL) {
-            count += botLeftNode->aggregateRegion(p, distance);
+            count += botLeftNode->aggregateRegion(_topLeftP, _botRightP, distance);
         }
         if (botRightNode != NULL) {
-            count += botRightNode->aggregateRegion(p, distance);
+            count += botRightNode->aggregateRegion(_topLeftP, _botRightP, distance);
         }
     }
 

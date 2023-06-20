@@ -60,23 +60,18 @@ vector<Data> readDataBase(int numLines) {
 }
 
 int main() {
-	cout << "How many cities do you want to insert into the QuadTree?" << endl;
-	int numData;
-	cin >> numData;
-
-	// Leemos numData líneas de la base de datos (sin contar títulos) latitude las guardamos en el vector de Data
+	int numData = 100;
 	vector<Data> dataBase = readDataBase(numData);
+	int width = 90;
 
-	cout << "What is the width of the smallest square? (from 0.0001 to 360)" << endl;
-	int width;
-	cin >> width;
-
-	// El área más pequeña será de width longitude (width/2)
+	// El área más pequeña será de width longitude
 	QuadTree qt(width);
 
-	for (int i = 0; i < numData; i++) {
+	for (int i = 0; i < dataBase.size(); i++) {
 		qt.insert(dataBase[i].position, dataBase[i].city, dataBase[i].population);
 	}
+
+	cout << "Count region with p=(-85, 40) and d=1: " << qt.countRegion(Point(-85, 40), 1) << endl;
 
 	qt.printQuadTree();
 	
