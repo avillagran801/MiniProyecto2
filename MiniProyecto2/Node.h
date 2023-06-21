@@ -53,10 +53,10 @@ public:
     bool insert(Point _p, string _city, int _population);
     bool inBoundary(Point evaluate);
     int getNumNodes();
-    int countRegion(Point _topLeftP, Point _botRightP, int distance);
-    int aggregateRegion(Point _topLeftP, Point _botRightP, int distance);
     bool isLeaf();
-    void print(Node* node, string indent, int branch);
+    int countRegion(Point _topLeftP, Point _botRightP);
+    int aggregateRegion(Point _topLeftP, Point _botRightP);
     vector<Data> list();
+    void print(Node* node, string indent, int branch);
 };
 

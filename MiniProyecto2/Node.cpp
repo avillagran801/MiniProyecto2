@@ -122,7 +122,7 @@ int Node::getNumNodes() {
     else return nodes + 1;
 }
 
-int Node::countRegion(Point _topLeftP, Point _botRightP, int distance) {
+int Node::countRegion(Point _topLeftP, Point _botRightP) {
     int count = 0;
 
     // Si estamos en el último nivel, revisamos si los datos que almacena cumplen con estar dentro de la distancia establecida
@@ -136,23 +136,23 @@ int Node::countRegion(Point _topLeftP, Point _botRightP, int distance) {
     }
     else {
         if (topLeftNode != NULL) {
-            count += topLeftNode->countRegion(_topLeftP, _botRightP, distance);
+            count += topLeftNode->countRegion(_topLeftP, _botRightP);
         }
         if (topRightNode != NULL) {
-            count += topRightNode->countRegion(_topLeftP, _botRightP, distance);
+            count += topRightNode->countRegion(_topLeftP, _botRightP);
         }
         if (botLeftNode != NULL) {
-            count += botLeftNode->countRegion(_topLeftP, _botRightP, distance);
+            count += botLeftNode->countRegion(_topLeftP, _botRightP);
         }
         if (botRightNode != NULL) {
-            count += botRightNode->countRegion(_topLeftP, _botRightP, distance);
+            count += botRightNode->countRegion(_topLeftP, _botRightP);
         }
     }
 
     return count;
 }
 
-int Node::aggregateRegion(Point _topLeftP, Point _botRightP, int distance) {
+int Node::aggregateRegion(Point _topLeftP, Point _botRightP) {
     int count = 0;
 
     // Si estamos en el último nivel, revisamos si los datos que almacena cumplen con estar dentro de la distancia establecida
@@ -168,16 +168,16 @@ int Node::aggregateRegion(Point _topLeftP, Point _botRightP, int distance) {
     }
     else {
         if (topLeftNode != NULL) {
-            count += topLeftNode->aggregateRegion(_topLeftP, _botRightP, distance);
+            count += topLeftNode->aggregateRegion(_topLeftP, _botRightP);
         }
         if (topRightNode != NULL) {
-            count += topRightNode->aggregateRegion(_topLeftP, _botRightP, distance);
+            count += topRightNode->aggregateRegion(_topLeftP, _botRightP);
         }
         if (botLeftNode != NULL) {
-            count += botLeftNode->aggregateRegion(_topLeftP, _botRightP, distance);
+            count += botLeftNode->aggregateRegion(_topLeftP, _botRightP);
         }
         if (botRightNode != NULL) {
-            count += botRightNode->aggregateRegion(_topLeftP, _botRightP, distance);
+            count += botRightNode->aggregateRegion(_topLeftP, _botRightP);
         }
     }
 
