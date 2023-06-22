@@ -32,14 +32,14 @@ int QuadTree::countRegion(Point p, int distance) {
 	Point _topLeft = Point(p.longitude - distance*MIN_WIDTH_SIZE, p.latitude + distance*MIN_WIDTH_SIZE/2);
 	Point _botRight = Point(p.longitude + distance*MIN_WIDTH_SIZE, p.latitude - distance*MIN_WIDTH_SIZE/2);
 
-	return root->countRegion(_topLeft, _botRight, distance);
+	return root->countRegion(_topLeft, _botRight);
 }
 
 int QuadTree::aggregateRegion(Point p, int distance) {
 	Point _topLeft = Point(p.longitude - distance * MIN_WIDTH_SIZE, p.latitude + distance * MIN_WIDTH_SIZE / 2);
 	Point _botRight = Point(p.longitude + distance * MIN_WIDTH_SIZE, p.latitude - distance * MIN_WIDTH_SIZE / 2);
 
-	return root->aggregateRegion(_topLeft, _botRight, distance);
+	return root->aggregateRegion(_topLeft, _botRight);
 }
 
 void QuadTree::printQuadTree() {
