@@ -7,7 +7,6 @@ using namespace std;
 class QuadTree{
 private:
     int numPoints; // Usados
-    int numNodes; // Toooooodos
     Node* root;
 	double MIN_WIDTH_SIZE;
 
