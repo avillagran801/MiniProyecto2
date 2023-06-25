@@ -54,8 +54,8 @@ public:
     bool inBoundary(Point evaluate);
     int getNumNodes();
     bool isLeaf();
-    int countRegion(Point _topLeftP, Point _botRightP);
-    int aggregateRegion(Point _topLeftP, Point _botRightP);
+    long long countRegion(Point _topLeftP, Point _botRightP);
+    long long aggregateRegion(Point _topLeftP, Point _botRightP);
     vector<Data> list();
     void print(Node* node, string indent, int branch);
 };

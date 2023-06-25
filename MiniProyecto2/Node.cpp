@@ -122,8 +122,8 @@ int Node::getNumNodes() {
     else return nodes + 1;
 }
 
-int Node::countRegion(Point _topLeftP, Point _botRightP) {
-    int count = 0;
+long long Node::countRegion(Point _topLeftP, Point _botRightP) {
+    long long count = 0;
 
     // Si estamos en el último nivel, revisamos si los datos que almacena cumplen con estar dentro de la distancia establecida
     if (isLeaf()) {
@@ -152,8 +152,8 @@ int Node::countRegion(Point _topLeftP, Point _botRightP) {
     return count;
 }
 
-int Node::aggregateRegion(Point _topLeftP, Point _botRightP) {
-    int count = 0;
+long long Node::aggregateRegion(Point _topLeftP, Point _botRightP) {
+    long long count = 0;
 
     // Si estamos en el último nivel, revisamos si los datos que almacena cumplen con estar dentro de la distancia establecida
     if (isLeaf()) {
