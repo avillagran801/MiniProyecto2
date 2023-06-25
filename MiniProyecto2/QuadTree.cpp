@@ -3,8 +3,7 @@
 using namespace std;
 
 QuadTree::QuadTree(double _min_width_size) {
-	root = new Node(Point(-180, 90), Point(180, -90), _min_width_size); // Definimos los márgenes del plano general
-	numNodes = 0;
+	root = new Node(Point(-180, 90), Point(180, -90), _min_width_size); // Definimos los mÃ¡rgenes del plano general
 	numPoints = 0;
     MIN_WIDTH_SIZE = _min_width_size;
 }
@@ -18,7 +17,7 @@ int QuadTree::totalNodes() {
 }
 
 void QuadTree::insert(Point p, string city, int population) {
-	// Relegamos la inserción a root. Si es válida la inserción, numPoints aumenta en 1
+	// Relegamos la inserciÃ³n a root. Si es vÃ¡lida la inserciÃ³n, numPoints aumenta en 1
 	if (root->insert(p, city, population)) {
 		numPoints++;
 	}
